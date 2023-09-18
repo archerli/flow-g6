@@ -1,2 +1,17 @@
-# flow-g6
-antv/g6绘制关系图 | 流程图
+### Compiles and hot-reloads for development
+
+```
+npm start
+```
+
+### Compiles and minifies for production
+
+```
+npm run build
+```
+
+This is the official base template for [Create Neat](https://github.com/xun082/react-cli).
+
+For more information, please refer to:
+
+- [Getting Started](https://github.com/xun082/react-cli) – How to create a new app.

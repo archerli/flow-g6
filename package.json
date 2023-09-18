@@ -1,0 +1,48 @@
+{
+  "name": "flow-g6",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "vue-script start",
+    "build": "vue-script build",
+    "analyzer": "vue-script analyzer",
+    "commit": "git-cz && git push",
+    "release": "standard-version",
+    "release:alpha": "standard-version --prerelease alpha",
+    "release:rc": "standard-version --prerelease rc",
+    "release:major": "pnpm run release -- --release-as major",
+    "release:minor": "pnpm run release -- --release-as minor",
+    "release:patch": "pnpm run release -- --release-as patch"
+  },
+  "dependencies": {
+    "@antv/g6": "^4.8.22",
+    "vue": "^3.3.4"
+  },
+  "author": "plutda",
+  "devDependencies": {
+    "@commitlint/cli": "^17.6.5",
+    "@commitlint/config-conventional": "^17.6.5",
+    "@laconic/vue-script": "^1.0.0",
+    "@types/vue": "^2.0.0",
+    "commitizen": "^4.3.0",
+    "cz-git": "^1.6.1",
+    "husky": "^8.0.3",
+    "standard-version": "^9.5.0",
+    "typescript": "~4.5.5"
+  },
+  "browserslist": [
+    "last 2 version",
+    "> 1%",
+    "not dead"
+  ],
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-git"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx}": [
+      "prettier --write",
+      "eslint --fix"
+    ]
+  }
+}
