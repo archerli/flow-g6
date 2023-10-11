@@ -1,5 +1,8 @@
 <template>
   <section class="sidebar-container">
+    <div class="sidebar-title">
+      模型列表
+    </div>
     <div class="scrollbar">
       <ul
         class="model-list"
@@ -62,17 +65,21 @@ ol, ul, li{
 }
 
 .sidebar-container {
-  background: #ECEFF4;
+  background: #3f51b5;
   position: absolute;
   left: 0;
   top: 0;
   width: 220px;
   height: 100%;
 }
-
-.scrollbar {
-  height: 100%;
-  overflow-y: auto;
+.sidebar-title {
+  height: 40px;
+  line-height: 40px;
+  padding-left: 10px;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  background: #303f9f;
 }
 
 .model-list {
@@ -81,6 +88,7 @@ ol, ul, li{
 }
 
 .model-list li {
+  margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.65);
   border-radius: 4px;
   line-height: 26px;

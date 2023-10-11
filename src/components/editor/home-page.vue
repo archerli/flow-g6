@@ -4,7 +4,7 @@
   </section>
 </template>
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from 'vue'
 import G6 from '@antv/g6'
 
@@ -13,10 +13,9 @@ onMounted(() => {
 })
 
 function init() {
-  const height = 600
-  const width = 1000
-
-  const container = document.getElementById('graph-container');
+  const container = document.getElementById('graph-container') as HTMLElement
+  const rect = container.getBoundingClientRect()
+  const { height, width } = rect
 
   const graph = new G6.Graph({
     container,
@@ -50,15 +49,15 @@ function init() {
     event.preventDefault();
 
     // 获取鼠标相对于画布的坐标
-    const x = event.clientX - container.getBoundingClientRect().left;
-    const y = event.clientY - container.getBoundingClientRect().top;
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
 
     // 创建 G6 节点
     const node = {
       id: Math.random().toString(36).substr(2),
       x,
       y,
-      size: 60,
+      size: 100,
       label: '新节点'
     };
 
@@ -83,10 +82,12 @@ function init() {
 <style scoped>
 .page {
   margin-left: 220px;
-  margin-right: 288px;
   background: #f5f5f5;
   height: 100%;
-  width: 100%;
   overflow: auto;
+}
+#graph-container {
+  height: 100%;
+  width: 100%;
 }
 </style>
