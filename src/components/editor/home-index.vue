@@ -9,12 +9,13 @@
 import { defineComponent, provide } from 'vue'
 import HomeSidebar from './home-sidebar.vue'
 import HomePage from './home-page.vue'
-import commands from './commands'
+// import commands from './commands'
+import '../element'
 
 export default defineComponent({
   provide() {
     return {
-      commands
+      // commands
     }
   },
   components: {

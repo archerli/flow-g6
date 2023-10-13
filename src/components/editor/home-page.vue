@@ -6,38 +6,21 @@
 
 <script lang="ts" setup>
 import { onMounted } from 'vue'
-import G6 from '@antv/g6'
+import editor from '../element/editor'
+import '../element'
 
 onMounted(() => {
   init()
 })
 
 function init() {
+  console.log("init")
   const container = document.getElementById('graph-container') as HTMLElement
   const rect = container.getBoundingClientRect()
   const { height, width } = rect
 
-  const graph = new G6.Graph({
-    container,
-    height,
-    width,
-    modes: {
-      // 支持的 behavior
-      default: [
-        'drag-canvas',
-        'zoom-canvas',
-        'hover-node',
-        'click',
-        'select-node',
-        'hover-edge',
-        'keyboard',
-        'customer-events'
-      ],
-      mulitSelect: ['mulit-select'],
-      addEdge: ['add-edge'],
-      moveNode: ['drag-item']
-    }
-  })
+  const flowEditor = new editor(container, height, width)
+  const graph = flowEditor.graph
 
   // 监听 dragstart 事件，开始拖拽时设置数据
   // dragNode.addEventListener('dragstart', event => {
@@ -54,15 +37,14 @@ function init() {
 
     // 创建 G6 节点
     const node = {
-      id: Math.random().toString(36).substr(2),
+      type: 'anchorNode',
       x,
       y,
-      size: 100,
       label: '新节点'
     };
 
     // 添加节点到画布上
-    graph.addItem('node', node);
+    graph.addItem('node', node, true);
 
     // 更新画布
     graph.refresh();
