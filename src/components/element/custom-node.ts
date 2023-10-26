@@ -3,12 +3,13 @@ import { registerNode } from '@antv/g6'
 export function initCustomNode() {
   registerNode('anchorNode', {
     draw(cfg: any, group) {
-      const titleColor = '#3693ff'
+      const titleColor = '#096DD9'
       const fieldsColor = '#e0eee8'
       // 标题的一格
       const size: number[] = [170, 30]
       // 内容区域的一格
       const subSize: number[] = [170, 30]
+      const radius = 5
   
       const width: number = size[0]
       const height: number = size[1]
@@ -22,72 +23,68 @@ export function initCustomNode() {
           width: size[0],
           height: size[1],
           stroke: '#096DD9',
-          fill: titleColor // 此处必须有fill 不然不能触发事件
-          // radius: 4
+          fill: titleColor,
+          radius: [radius, radius, 0, 0],
         }
       })
+
+      const fontLeft = 0;
+      group.addShape("text", {
+        attrs: {
+          y: 12,
+          // x: fontLeft,
+          fill: "#fff",
+          text: cfg.label,
+          fontSize: 12,
+          fontWeight: 500,
+          textAlign: 'left',
+          textBaseline: 'middle',
+        },
+      });
   
       // 添加总边框
-      group.addShape('rect', {
-        attrs: {
-          id: 'rect-border',
-          x: offsetX,
-          y: offsetY,
-          width: size[0],
-          height: height,
-          stroke: 'gray',
-          lineWidth: 1,
-          shadowBlur: 15,
-          borderRadius: 6,
-          opacity: 0
-        }
-      })
+      // group.addShape('rect', {
+      //   attrs: {
+      //     id: 'rect-border',
+      //     x: offsetX,
+      //     y: offsetY,
+      //     width: size[0],
+      //     height: height,
+      //     stroke: 'gray',
+      //     lineWidth: 1,
+      //     shadowBlur: 15,
+      //     borderRadius: 6,
+      //     opacity: 0
+      //   }
+      // })
   
-      const markSize = 14
+      // const markSize = 14
   
-      group.addShape('rect', {
-        attrs: {
-          id: `add-marker`,
-          x: offsetX + width,
-          y: offsetY - markSize,
-          stroke: 'rgba(0, 0, 0, 0.25)',
-          fill: '#fff',
-          width: markSize,
-          height: markSize,
-        },
-      })
-      group.addShape('text', {
-        attrs: {
-          id: 'add-marker-text',
-          x: offsetX + width + 7,
-          y: offsetY - 9,
-          textAlign: 'center',
-          textBaseline: 'middle',
-          text: '+',
-          fontSize: 16,
-          cursor: 'pointer',
-          fill: 'rgba(0, 0, 0, 0.25)',
-        }
-      })
-  
-      group.addShape('image', {
-        attrs: {
-          x: offsetX + 16,
-          y: offsetY + 8,
-          width: 20,
-          height: 16,
-          img: cfg.image
-        }
-      })
-      group.addShape('image', {
-        attrs: {
-          x: offsetX + width - 32,
-          y: offsetY + 8,
-          width: 16,
-          height: 16,
-          img: cfg.stateImage
-        }
-      })
+      // group.addShape('rect', {
+      //   attrs: {
+      //     id: `add-marker`,
+      //     x: offsetX + width,
+      //     y: offsetY - markSize,
+      //     stroke: 'rgba(0, 0, 0, 0.25)',
+      //     fill: '#fff',
+      //     width: markSize,
+      //     height: markSize,
+      //   },
+      // })
+      // group.addShape('text', {
+      //   attrs: {
+      //     id: 'add-marker-text',
+      //     x: offsetX + width + 7,
+      //     y: offsetY - 9,
+      //     textAlign: 'center',
+      //     textBaseline: 'middle',
+      //     text: '+',
+      //     fontSize: 16,
+      //     cursor: 'pointer',
+      //     fill: 'rgba(0, 0, 0, 0.25)',
+      //   }
+      // })
+
       // if (cfg.backImage) {
       //   const clip = new Shape.Rect({
       //     attrs: {
@@ -110,48 +107,48 @@ export function initCustomNode() {
       //     }
       //   })
       // }
-      if (cfg.label) {
-        group.addShape('text', {
-          attrs: {
-            x: offsetX + size[0] / 2,
-            y: offsetY + size[1] / 2,
-            textAlign: 'center',
-            textBaseline: 'middle',
-            text: cfg.label,
-            fill: '#fff'
-          }
-        })
-      }
+      // if (cfg.label) {
+      //   group.addShape('text', {
+      //     attrs: {
+      //       x: offsetX + size[0] / 2,
+      //       y: offsetY + size[1] / 2,
+      //       textAlign: 'center',
+      //       textBaseline: 'middle',
+      //       text: cfg.label,
+      //       fill: '#fff'
+      //     }
+      //   })
+      // }
       // if (cfg.inPoints) {
-        for (let i = 0; i < cfg.inPoints.length; i++) {
-          const x = width * cfg.inPoints[i][0]
-          const y = height * cfg.inPoints[i][1]
-          const id = `circle}`
-          group.addShape('circle', {
-            attrs: {
-              id: `circle}`,
-              parent: id,
-              x: x + offsetX,
-              y: y + offsetY,
-              r: 10,
-              isInPointOut: true,
-              fill: '#1890ff',
-              opacity: 0
-            }
-          })
-          group.addShape('circle', {
-            attrs: {
-              id,
-              x: x + offsetX,
-              y: y + offsetY,
-              r: 3,
-              isInPoint: true,
-              fill: '#fff',
-              stroke: '#1890ff',
-              opacity: 0
-            }
-          })
-        }
+        // for (let i = 0; i < cfg.inPoints.length; i++) {
+        //   const x = width * cfg.inPoints[i][0]
+        //   const y = height * cfg.inPoints[i][1]
+        //   const id = `circle}`
+        //   group.addShape('circle', {
+        //     attrs: {
+        //       id: `circle}`,
+        //       parent: id,
+        //       x: x + offsetX,
+        //       y: y + offsetY,
+        //       r: 10,
+        //       isInPointOut: true,
+        //       fill: '#1890ff',
+        //       opacity: 0
+        //     }
+        //   })
+        //   group.addShape('circle', {
+        //     attrs: {
+        //       id,
+        //       x: x + offsetX,
+        //       y: y + offsetY,
+        //       r: 3,
+        //       isInPoint: true,
+        //       fill: '#fff',
+        //       stroke: '#1890ff',
+        //       opacity: 0
+        //     }
+        //   })
+        // }
       // }
       // if (cfg.outPoints) {
       //   for (let i = 0; i < cfg.outPoints.length; i++) {
